@@ -24,7 +24,7 @@
     </nav>
     <div class="hero text-center">
         <h1>UFO Sightings</h1>
-        <p>The Truth is Out There</p>
+        <p>The truth is out there!></p>
       </div>
     <div class="container">
         <div class="row margin-top-50">
@@ -41,8 +41,8 @@
                           <input class="form-control" id="datetime" type="text" placeholder="1/11/2010">
                         </li>
                         <li class="filter list-group-item">
-                            <label for="City">Enter a City</label>
-                            <input class="form-control" id="city" type="text" placeholder="Aspen">
+                            <label for="city" class="control-label">Enter a City</label>
+                            <input class="form-control" id="city" type="text" placeholder="Aspen" >
                         </li>
                         <li class="filter list-group-item">
                             <label for="State">Enter a State</label>
@@ -54,7 +54,12 @@
                         </li>
                         <li class="filter list-group-item">
                             <label for="Shape">Enter a Shape</label>
-                            <input class="form-control" id="shape" type="text" placeholder="circle">
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                <option selected>Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
                         </li>
                       </ul>
                     </div>
