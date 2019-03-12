@@ -3,6 +3,7 @@
 var tableData = data;
 var tbody = d3.select("tbody");
 var submit = d3.select("#filter-btn")
+
 tableData.forEach((ufoSighting) => {
     var row = tbody.append("tr");
     Object.entries(ufoSighting).forEach(([key, value]) => {
@@ -14,8 +15,12 @@ tableData.forEach((ufoSighting) => {
 submit.on("click", function() {
     d3.event.preventDefault();
     d3.select('#ufo-table').selectAll("td").remove();
-    var cityElement 
-    var inputElement = d3.select("#datetime"); //this needs to loop through the form and find the values 
+    var cityElement = d3.select("#city");
+    var datetime = d3.select("#datetime");
+    var stateElement = d3.select("#State");
+    var countryElement = d3.select("#Country");
+    var shapeElement = d3.select("#Shape");
+    var inputElement = [cityElement, datetime,stateElement, countryElement, shapeElement] //this needs to loop through the form and find the values 
     var inputValue = inputElement.property("value");
     var filteredData = tableData.filter(date => date.datetime === inputValue );
     filteredData.forEach((ufoSighting) => {
