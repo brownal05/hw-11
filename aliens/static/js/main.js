@@ -1,63 +1,73 @@
-// Get a reference to the table body
-var tbody = d3.select("tbody");
+var columns = Object.keys(data[0]);
+var tableData = data
+var submit = d3.select("#filter-btn")
 
-// Console.log the weather data from data.js
-console.log(data);
+function buildTable(tableData, columns) {
+  var table = d3.select("#table-area")
+  .append('table')
+  .attr('id', 'ufo-table')
+  .attr('class', "table table-dark table-striped table-responisve table-hover table-md ")
 
-// // Step 1: Loop Through `data` and console.log each weather report object
-// data.forEach(function(weatherReport) {
-//   console.log(weatherReport);
-// });
+	var thead = table.append('thead')
+	//var	tbody = table.append('tbody');
 
-// // Step 2:  Use d3 to append one table row `tr` for each weather report object
-// // Don't worry about adding cells or text yet, just try appending the `tr` elements.
-// data.forEach(function(weatherReport) {
-//   console.log(weatherReport);
-//   var row = tbody.append("tr");
-// });
+	// append the header row
+	thead.append('tr')
+	  .selectAll('th')
+    .data(columns)
+    .enter()
+    .append('th')
+    .attr('scope', 'col')
+    .text(function (column) { return column; });
+  return table    
+};
 
-// // Step 3:  Use `Object.entries` to console.log each weather report value
-// data.forEach(function(weatherReport) {
-//   console.log(weatherReport);
-//   var row = tbody.append("tr");
+ function buildAll(varData) {
+	// create a row for each object in the data
+	var tbody = d3.select('#ufo-table').append('tbody')
+  var rows = tbody.selectAll('tr')
+    .data(varData)
+	  .enter()
+	  .append('tr');
 
-//   Object.entries(weatherReport).forEach(function([key, value]) {
-//     console.log(key, value);
-//   });
-// });
+	// create a cell in each row for each column
+	var cells = rows.selectAll('td')
+	  .data(function (row) {
+	    return columns.map(function (column) {
+	      return {column: column, value: row[column]};
+	    });
+	  })
+	  .enter()
+	  .append('td')
+      .text(function (d) {
+         return d.value;
+       });
+  return tbody;
+};
 
-// // Step 4: Use d3 to append 1 cell per weather report value (weekday, date, high, low)
-// data.forEach(function(weatherReport) {
-//   console.log(weatherReport);
-//   var row = tbody.append("tr");
-
-//   Object.entries(weatherReport).forEach(function([key, value]) {
-//     console.log(key, value);
-//     // Append a cell to the row for each value
-//     // in the weather report object
-//     var cell = tbody.append("td");
-//   });
-// });
-
-// // Step 5: Use d3 to update each cell's text with
-// // weather report values (weekday, date, high, low)
-// data.forEach(function(weatherReport) {
-//   console.log(weatherReport);
-//   var row = tbody.append("tr");
-//   Object.entries(weatherReport).forEach(function([key, value]) {
-//     console.log(key, value);
-//     // Append a cell to the row for each value
-//     // in the weather report object
-//     var cell = tbody.append("td");
-//     cell.text(value);
-//   });
-// });
-
-// BONUS: Refactor to use Arrow Functions!
-data.forEach((weatherReport) => {
-  var row = tbody.append("tr");
-  Object.entries(weatherReport).forEach(([key, value]) => {
-    var cell = tbody.append("td");
-    cell.text(value);
-  });
+submit.on("click", function() {
+  d3.event.preventDefault();
+  d3.select('#ufo-table').selectAll("tbody").remove()
+  var inputElement = function(u) {d3.selectAll(".form-contol")
+    .property("value");
+    return (inputElement)
+    
+  };
+  
+ // var inputValue = inputElement.property("value");
+  var filteredData = tableData.filter(date => date.datetime === inputElement );
+  newtable = buildAll(filteredData)
+  return newtable
 });
+
+// submit.on("click", function() {
+//   d3.event.preventDefault();
+//   var searched_data = tableData,
+//     text = this.value.trim();
+//   searched_data = searched_data.map(function(r){
+//     return data.filter(function(p))
+//   })
+   
+//     })
+var myTable = buildTable(data, columns)
+var mydata = buildAll(data, columns)

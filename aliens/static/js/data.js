@@ -898,7 +898,7 @@ var data = [{
     durationMinutes: "5 minutes",
     comments: "triangle shaped craft with four coloured lights"
   },
-  {*-
+  {
     datetime: "1/12/2010",
     city: "fayetteville",
     state: "wv",
