@@ -33,7 +33,7 @@ submit.on("click", function() {
         });
       });
 });
-console.log(d3.entries(data))
+buildTable(tableData)
 // Input field formatter!!!
 // var text = d3.select("#datetime");
 // function handleChange(event) {

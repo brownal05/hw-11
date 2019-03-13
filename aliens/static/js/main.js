@@ -1,8 +1,9 @@
-var columns = Object.keys(data[0]);
-var tableData = data
-var submit = d3.select("#filter-btn")
 
-function buildTable(tableData, columns) {
+var tableData = data
+var columns = Object.keys(tableData[0]);
+var myTable = buildTable(columns)
+buildAll(tableData)
+function buildTable(columns) {
   var table = d3.select("#table-area")
   .append('table')
   .attr('id', 'ufo-table')
@@ -11,7 +12,7 @@ function buildTable(tableData, columns) {
 	var thead = table.append('thead')
 	//var	tbody = table.append('tbody');
 
-	// append the header row
+	// append t row
 	thead.append('tr')
 	  .selectAll('th')
     .data(columns)
@@ -45,20 +46,53 @@ function buildTable(tableData, columns) {
   return tbody;
 };
 
+// submit.on("click", function() {
+//   d3.event.preventDefault();
+//   d3.select('#ufo-table').selectAll("tbody").remove()
+//   var inputElement = function(u) {d3.selectAll(".form-contol")
+//     .property("value");
+//     return (inputElement)
+   
+//   };
+  
+//  // var inputValue = inputElement.property("value");
+//   var filteredData = tableData.filter(date => date.datetime === inputElement );
+//   newtable = buildAll(filteredData)
+//   return newtable
+// });
+var submit = d3.select("#filter-btn")
+
 submit.on("click", function() {
   d3.event.preventDefault();
-  d3.select('#ufo-table').selectAll("tbody").remove()
-  var inputElement = function(u) {d3.selectAll(".form-contol")
-    .property("value");
-    return (inputElement)
-    
-  };
-  
- // var inputValue = inputElement.property("value");
-  var filteredData = tableData.filter(date => date.datetime === inputElement );
-  newtable = buildAll(filteredData)
-  return newtable
+  d3.select('#ufo-table').selectAll("td").remove()
+  var inputElement = d3.selectAll(".form-control"); //this needs to loop through the form and find the values 
+  console.log(inputElement)
+  var inputValue = inputElement.property("value");
+  console.log(inputValue);
+  var filteredData = tableData.filter(date => date.datetime === inputValue ); 
+  buildAll(filteredData)
 });
+
+d3.select("#city").on("keyup", function() {
+  var searched_data = tableData,
+    text = this.value.trim();
+    
+})
+
+// submit.on("click", function() {
+//   d3.event.preventDefault();
+//   d3.select('#ufo-table').selectAll("tbody").remove()
+//   var inputValue = d3.selectAll("li").selectAll(".form-control")
+//   console.log(Object.values(inputValue))
+  //var filteredData = inputValue.forEach(function(d,i) {console.log(d)})
+   
+  //console.log(filteredData)
+  // var filteredData = tableData.
+  // console.log(filteredData)
+  // newtable = buildAll(filteredData)
+  // return newtable
+  
+// }); 
 
 // submit.on("click", function() {
 //   d3.event.preventDefault();
@@ -69,5 +103,16 @@ submit.on("click", function() {
 //   })
    
 //     })
-var myTable = buildTable(data, columns)
-var mydata = buildAll(data, columns)
+
+
+//works
+// submit.on("click", function() {
+//   d3.event.preventDefault();
+//   d3.select('#ufo-table').selectAll("td").remove()
+//   var inputElement = d3.selectAll("#datetime"); //this needs to loop through the form and find the values 
+//   var inputValue = inputElement.property("value");
+//   console.log(inputValue);
+//   console.log(tableData);
+//   var filteredData = tableData.filter(date => date.datetime === inputValue ); 
+//   buildAll(filteredData)
+// });
