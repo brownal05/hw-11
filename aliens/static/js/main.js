@@ -75,8 +75,8 @@ submit.on("click", function() {
   Object.entries(inputValue).forEach((formOption) =>{
     copyData = copyData.filter((row) => { 
       return row[formOption[0]] === row[formOption[1]]})
+      console.log(copyData)
   });
-  console.log(copyData)
     return copyData;
     
 }
