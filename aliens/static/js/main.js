@@ -46,6 +46,18 @@ function buildTable(columns) {
   return tbody;
 };
 
+var submit = d3.select("#filter-btn")
+
+submit.on("click", function() {
+  d3.event.preventDefault();
+  d3.select('#ufo-table').selectAll("td").remove()
+  var inputElement = d3.selectAll("#datetime"); //this needs to loop through the form and find the values 
+  var inputValue = inputElement.property("value");
+  console.log(inputValue);
+  console.log(tableData);
+  var filteredData = tableData.filter(date => date.datetime === inputValue ); 
+  buildAll(filteredData)
+});
 // submit.on("click", function() {
 //   d3.event.preventDefault();
 //   d3.select('#ufo-table').selectAll("tbody").remove()
@@ -60,34 +72,33 @@ function buildTable(columns) {
 //   newtable = buildAll(filteredData)
 //   return newtable
 // });
-var submit = d3.select("#filter-btn")
 
-submit.on("click", function() {
-  d3.event.preventDefault();
-  d3.select('#ufo-table').selectAll("td").remove() //remove table body
-  var inputElement = d3.selectAll(".form-control"); //this needs to loop through the form and find the values 
-  console.log(inputElement)
-  var inputValue = inputElement.property("value");
-  console.log(inputValue)
+// submit.on("click", function() {
+//   d3.event.preventDefault();
+//   d3.select('#ufo-table').selectAll("td").remove() //remove table body
+//   var inputElement = d3.selectAll(".form-control"); //this needs to loop through the form and find the values 
+//   console.log(inputElement)
+//   var inputValue = inputElement.property("value");
+//   console.log(inputValue)
 
-  function bigFilter(inputValue){
-  let copyData = tableData
-  Object.entries(inputValue).forEach((formOption) =>{
-    copyData = copyData.filter((row) => { 
-      return row[formOption[0]] === row[formOption[1]]})
-  });
-  console.log(copyData)
-    return copyData;
+//   function bigFilter(inputValue){
+//   let copyData = tableData
+//   Object.entries(inputValue).forEach((formOption) =>{
+//     copyData = copyData.filter((row) => { 
+//       return row[formOption[0]] === row[formOption[1]]})
+//   });
+//   console.log(copyData)
+//     return copyData;
     
-}
-  filteredData = bigFilter(inputValue)
-  console.log(filteredData)
-  // console.log(copyData);
-  // var filteredData = tableData.filter(sighting => sighting[property] === inputValue ); 
-  // var filteredData = tableData.filter(sighting => sighting.datetime === inputValue ); 
-  // console.log(tableData)
-  buildAll(filteredData)
-});
+// }
+//   filteredData = bigFilter()
+//   console.log(filteredData)
+//   // console.log(copyData);
+//   // var filteredData = tableData.filter(sighting => sighting[property] === inputValue ); 
+//   // var filteredData = tableData.filter(sighting => sighting.datetime === inputValue ); 
+//   // console.log(tableData)
+//   buildAll(filteredData)
+// });
 
 
 // submit.on("click", function() {

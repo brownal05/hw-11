@@ -1,6 +1,7 @@
 // from data.js
 //Table update
 var tableData = data;
+console.log(tableData)
 var tbody = d3.select("tbody");
 var submit = d3.select("#filter-btn")
 /**Builds initial table */
@@ -12,9 +13,9 @@ function buildTable(table){
       cell.text(value);
     });
   });
+  return 
 };
 
-buildTable(tableData)
 
 submit.on("click", function() {
     d3.event.preventDefault();
